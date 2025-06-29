@@ -1,6 +1,10 @@
 # TimerApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
+It is a single page, running a timer to an expiring deadline.
+A working version can be accessed on https://timer-app-khaki-three.vercel.app
+
+I have also added some unit test cases as well.
 
 ## Development server
 
