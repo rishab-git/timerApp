@@ -1,9 +1,8 @@
 {
   "version": 2,
-  "public": true,
   "builds": [
     {
-      "src": "dist/timerApp/**",
+      "src": "dist/timerApp/**/*",
       "use": "@vercel/static"
     }
   ],
