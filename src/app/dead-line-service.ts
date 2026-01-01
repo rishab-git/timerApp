@@ -7,7 +7,7 @@ import { shareReplay } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class DeadLineService {
-  private printerStatus$: Observable<any> | null = null;
+  private deadlineObservable$: Observable<any> | null = null;
 
   constructor(private http: HttpClient) {}
 
@@ -17,18 +17,18 @@ export class DeadLineService {
    * @returns An Observable containing the seconds left until the deadline, which is cached for performance.
    */
   getDeadLine(): Observable<{ secondsLeft: number }> {
-    if (!this.printerStatus$) {
-      this.printerStatus$ = this.http.get<{ secondsLeft: number }>(
+    if (!this.deadlineObservable$) {
+      this.deadlineObservable$ = this.http.get<{ secondsLeft: number }>(
         'assets/data/data.json'
       ).pipe(shareReplay(1));
     }
-    return this.printerStatus$;
+    return this.deadlineObservable$;
   }
 
   /**
    * Resets the cached deadline so the next call fetches fresh data.
    */
   resetDeadlineCache(): void {
-    this.printerStatus$ = null;
+    this.deadlineObservable$ = null;
   }
 }

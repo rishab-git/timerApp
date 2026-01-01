@@ -3,22 +3,21 @@
   <section>{{ description }}</section>
   <h2>Author: {{ author }}</h2>
 
-  <div
-    class="timer"
-    *ngIf="countdown$ | async as secondsLeft; else deadlineExpired"
-  >
-    Seconds left to deadline: {{ secondsLeft }}
-  </div>
-  <ng-template #deadlineExpired>
-    <div class="expired-message">Deadline has expired!</div>
-  </ng-template>
+  @let countdown = countdown$ | async; @if (countdown) {
+  <div class="timer">Seconds left to deadline: {{ countdown }}</div>
+  } @else {
+  <div class="expired-message">Deadline has expired!</div>
+  }
+
   <button (click)="resetDeadLine()">Reset Deadline</button>
 </div>
 <div class="footer">
   <section>
     <p>
       For code, visit the
-      <a href="https://github.com/rishab-git/timerApp/tree/master/src/app" target="_blank"
+      <a
+        href="https://github.com/rishab-git/timerApp/tree/master/src/app"
+        target="_blank"
         >GitHub repository</a
       >.
     </p>
